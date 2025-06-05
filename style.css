@@ -4,44 +4,121 @@
 header {
   background: linear-gradient(90deg, #1565c0 0%, #42a5f5 100%);
   color: #fff;
-  padding: 2rem 0 1.5rem 0;
+  padding: 2.5rem 0 2rem 0;
   border-radius: 0 0 24px 24px;
   box-shadow: 0 4px 16px rgba(21, 101, 192, 0.08);
 }
 header > div {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  max-width: 700px;
-  margin-left: 2.5rem;
-  margin-right: auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 header img {
-  width: 160px;
+  width: 120px;
   height: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 header h1 {
-  font-size: 2.5rem;
-  margin: 0.5rem 0 0.5rem 0;
+  font-size: 2.2rem;
+  margin: 0 0 0.5rem 0;
   font-weight: 700;
   letter-spacing: 1px;
 }
 header p {
-  font-size: 1.2rem;
-  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  margin: 0;
   text-align: left;
-  max-width: 90%;
+  max-width: 100%;
 }
 
-@font-face {
-  font-family: 'Intel One Mono';
-  src: url(fonts/IntelOneMono-Regular.woff) format('woff');
-  font-weight: normal;
-  font-style: normal;
+/* --- TIMELINE GROUP: HORIZONTAL SCROLL ON DESKTOP, VERTICAL ON MOBILE --- */
+.timeline-group {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
 }
-* {
-  font-family: 'Intel One Mono', monospace !important;
+.timeline-group > div {
+  min-width: 340px;
+  max-width: 340px;
+  flex: 0 0 340px;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 900px) {
+  header > div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    max-width: 98vw;
+    padding: 0 1rem;
+  }
+  header img {
+    width: 90px;
+  }
+  .timeline-group {
+    gap: 1.2rem;
+  }
+  .timeline-group > div {
+    min-width: 80vw;
+    max-width: 80vw;
+    flex: 0 0 80vw;
+  }
+}
+@media (max-width: 600px) {
+  .timeline-group {
+    flex-direction: column;
+    overflow-x: unset;
+    gap: 1.2rem;
+    padding-bottom: 0;
+  }
+  .timeline-group > div {
+    min-width: 0;
+    max-width: 100vw;
+    flex: 1 1 100%;
+  }
+  header > div {
+    padding: 0 0.5rem;
+  }
+  header h1 {
+    font-size: 1.3rem;
+  }
+  header img {
+    width: 70px;
+  }
+}
+
+/* --- CARD IMAGE CONSISTENCY --- */
+.timeline-group .card-image,
+.timeline-group .card-image img {
+  width: 100%;
+  height: 220px;
+  min-height: 220px;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+@media (max-width: 600px) {
+  .timeline-group .card-image,
+  .timeline-group .card-image img {
+    height: 130px;
+    min-height: 130px;
+    max-height: 130px;
+  }
 }
 
 /* Remove card styles from group containers, so only cards get box styling */
@@ -72,9 +149,9 @@ section > div {
 .timeline-group .card-image,
 .timeline-group .card-image img {
   width: 100%;
-  height: 260px;
-  min-height: 260px;
-  max-height: 260px;
+  height: 220px;
+  min-height: 220px;
+  max-height: 220px;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -99,7 +176,7 @@ section > div {
 /* Remove conflicting or redundant sizing from .timeline-group > div img */
 .timeline-group > div img {
   width: 100%;
-  height: 260px;
+  height: 220px;
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 0.7rem;
